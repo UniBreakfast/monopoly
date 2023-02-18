@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.monopoly > table {
+    --card-height: 14vmin;
+    --card-width: 8vmin;
+    --row-length: 2;
+    --prop-color: black;
+
+    font-size: 6px;
+}
+
+td {
+    width: var(--card-height);
+    height: var(--card-height);
+    border: 1px solid;
+    padding: 0;
+}
+
+.card {
+    width: var(--card-width);
+}
+
+.arena {
+    height: calc(var(--card-width) * var(--row-length));
+}
+
+:has(>.side-row) {
+    vertical-align: top;
+}
+
+.side-row {
+    position: absolute;
+    transform-origin: left bottom;
+    transform: translateY(-100%) rotate(90deg);
+}
+
+.side-row.right {
+    width: calc(var(--card-width) * var(--row-length));
+}
+
+.side-row.right tr {
+    rotate: 180deg;
+}
+
+.side-row td {
+    border: none;
+}
+
+.side-row td:not(:first-child) {
+    border: 1px solid;
+}
+
+.property {
+    background: linear-gradient(to bottom, var(--prop-color) 20%, transparent 20%);
+}
