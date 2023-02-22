@@ -22,6 +22,8 @@ function fillBoard(table) {
         const descr = gameCells[indx]
         renderFuncs[descr.type](cell, descr)
     })
+
+    return cells;
 }
 
 function renderCorner(td, descr) {

@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -11,7 +16,7 @@ table {
     --card-width: 8vmin;
     --row-length: 2;
     --prop-color: black;
-
+    --player-color: red;
     font-size: 6px;
 }
 
@@ -20,6 +25,9 @@ td {
     height: var(--card-height);
     border: 1px solid;
     padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: " ", sans-serif;
 }
 
 .card {
@@ -58,4 +66,27 @@ td {
 
 .property {
     background: linear-gradient(to bottom, var(--prop-color) 20%, transparent 20%);
+}
+
+.chest {
+    background: url(./img/chest.jpg) no-repeat;
+    background-size: contain;
+}
+
+.chance {
+    background: url(./img/chance.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.chip {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-color: var(--player-color);
+    transition: 1s;
+    border-radius: 50px;
+}
+
+.chip:hover {
+    opacity: 0.2;
 }
