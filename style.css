@@ -11,7 +11,7 @@ table {
     border-collapse: collapse;
 }
 
-.monopoly > table {
+.monopoly>table {
     --card-height: 14vmin;
     --card-width: 8vmin;
     --row-length: 2;
@@ -83,10 +83,75 @@ td {
     height: 30px;
     position: absolute;
     background-color: var(--player-color);
-    transition: 1s;
+    transition: 300ms;
     border-radius: 50px;
 }
 
 .chip:hover {
     opacity: 0.2;
+}
+
+.player-names {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+die {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 10%;
+    box-shadow: 0 0 5px 2px black;
+    margin-right: 20px;
+    position: relative;
+}
+
+dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: black;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+}
+
+:has(:nth-child(6):last-child)>dot:nth-child(5) {
+    top: 40%;
+}
+
+:has(:nth-child(6):last-child)>dot:nth-child(2) {
+    top: 40%;
+    left: 65%;
+}
+
+:has(:nth-child(4):last-child)>dot:nth-child(2),
+:has(:nth-child(5):last-child)>dot:nth-child(4),
+:has(:nth-child(6):last-child)>dot:nth-child(4) {
+    left: 65%;
+}
+
+:has(:nth-child(4):last-child)>dot:nth-child(4),
+:has(:nth-child(5):last-child)>dot:nth-child(5),
+:has(:nth-child(6):last-child)>dot:nth-child(3) {
+    top: 65%;
+}
+
+:has(:nth-child(2):last-child)>dot:nth-child(2),
+:has(:nth-child(3):last-child)>dot:nth-child(3),
+:has(:nth-child(4):last-child)>dot:nth-child(3),
+:has(:nth-child(5):last-child)>dot:nth-child(3),
+:has(:nth-child(6):last-child)>dot:nth-child(6) {
+    top: 65%;
+    left: 65%;
+}
+
+
+:has(:nth-child(5):last-child)>dot:nth-child(2),
+:has(:nth-child(3):last-child)>dot:nth-child(2),
+dot:only-child {
+    top: 40%;
+    left: 40%;
 }

@@ -1,7 +1,7 @@
 export { startGame }
 
 import { gameCells } from "./gameCells.js"
-
+import { getPlayerReady, showdieThrow } from "./forms.js"
 
 const monopoly = document.querySelector(".monopoly");
 
@@ -13,10 +13,14 @@ async function startGame(gameState, cells, table) {
   while (true) {
     const player = players[gameState.next];
     const chip = chips[gameState.next];
-    const stepsToMove = await getDiceThrow();
+
+    await getPlayerReady(player.name);
+
+    const stepsToMove = await getdieThrow();
+
     await movePlayer(player, stepsToMove, cells, chip);
-    player.cell += stepsToMove;
-    gameState.next++;
+
+    gameState.next = (gameState.next + 1) % gameState.players.length;
   }
 }
 
@@ -31,6 +35,7 @@ async function movePlayer(player, stepsToMove, cells, chip) {
 
       chip.addEventListener("transitionend", resolve, { once: true });
     })
+    await sleep(50);
   }
 }
 
@@ -50,6 +55,20 @@ function placePlayer(player, cells) {
   return chip;
 }
 
-function getDiceThrow() {
-  return 40;
+async function getdieThrow() {
+  const roll1 = random(6) + 1;
+  const roll2 = random(6) + 1;
+
+  await showdieThrow(roll1, roll2);
+
+  return roll1 + roll2;
 }
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function random(limit) {
+  return Math.floor(Math.random() * limit);
+}
+
