@@ -3,6 +3,7 @@ export const gameCells = [
         "name": "Go",
         "type": "corner",
         "action": "Collect $200 salary as you pass.",
+        "salary_amount": 200,
         "color": "none"
     },
     {
@@ -16,7 +17,7 @@ export const gameCells = [
     },
     {
         "name": "Community Chest",
-        "type": "community_chest",
+        "type": "communityChest",
         "action": "Draw a community chest card and follow the instructions on it.",
         "color": "none"
     },
@@ -47,7 +48,7 @@ export const gameCells = [
     {
         "name": "Oriental Avenue",
         "type": "property",
-        "color": "light_blue",
+        "color": "lightBlue",
         "price": 100,
         "rent": [6, 30, 90, 270, 400, 550],
         "house_cost": 50,
@@ -62,7 +63,7 @@ export const gameCells = [
     {
         "name": "Vermont Avenue",
         "type": "property",
-        "color": "light_blue",
+        "color": "lightBlue",
         "price": 100,
         "rent": [6, 30, 90, 270, 400, 550],
         "house_cost": 50,
@@ -71,7 +72,7 @@ export const gameCells = [
     {
         "name": "Connecticut Avenue",
         "type": "property",
-        "color": "light_blue",
+        "color": "lightBlue",
         "price": 120,
         "rent": [8, 40, 100, 300, 450, 600],
         "house_cost": 50,
@@ -81,7 +82,8 @@ export const gameCells = [
         "name": "Jail",
         "type": "corner",
         "action": "Just Visiting. You are in jail.",
-        "color": "none"
+        "color": "none",
+        "fine_amount": 50
     },
     {
         "name": "St. Charles Place",
@@ -136,7 +138,7 @@ export const gameCells = [
     },
     {
         "name": "Community Chest",
-        "type": "community_chest",
+        "type": "communityChest",
         "action": "Draw a community chest card and follow the instructions on it.",
         "color": "none"
     },
@@ -265,7 +267,7 @@ export const gameCells = [
     },
     {
         "name": "Community Chest",
-        "type": "community_chest",
+        "type": "communityChest",
         "action": "Draw a community chest card and follow the instructions on it.",
         "color": "none"
     },
@@ -305,7 +307,8 @@ export const gameCells = [
         "name": "Luxury Tax",
         "type": "tax",
         "action": "Pay $100.",
-        "color": "none"
+        "color": "none",
+        "tax_amount": 100
     },
     {
         "name": "Boardwalk",

@@ -1,4 +1,4 @@
-export { getPlayerNames, getPlayerReady, showdieThrow }
+export { getPlayerNames, getPlayerReady, showDieThrow }
 
 function getPlayerNames() {
   return new Promise((resolve) => {
@@ -77,12 +77,12 @@ function getPlayerReady(name) {
   })
 }
 
-function showdieThrow(roll1, roll2) {
+function showDieThrow(roll1, roll2) {
   return new Promise((resolve) => {
     const modal = document.createElement("dialog");
     const form = document.createElement("form");
-    const die1 = makedie(roll1);
-    const die2 = makedie(roll2);
+    const die1 = makeDie(roll1);
+    const die2 = makeDie(roll2);
     const btn = document.createElement("button");
 
     form.className = "player-ready";
@@ -100,7 +100,7 @@ function showdieThrow(roll1, roll2) {
   })
 }
 
-function makedie(roll) {
+function makeDie(roll) {
   const die = document.createElement("die");
 
   for (let i = 0; i < roll; i++) {

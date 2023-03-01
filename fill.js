@@ -1,10 +1,10 @@
 export { fillBoard }
-import { gameCells } from "./gameCells.js"
+import { gameCells } from "./gameInfo/gameCells.js"
 
 const renderFuncs = {
     "corner": renderCorner,
     "property": renderProperty,
-    "community_chest": renderChest,
+    "communityChest": renderChest,
     "tax": renderTax,
     "chance": renderChance,
     "utility": renderUtility

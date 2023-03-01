@@ -1,7 +1,8 @@
 export { startGame }
 
-import { gameCells } from "./gameCells.js"
-import { getPlayerReady, showdieThrow } from "./forms.js"
+import { gameCells } from "./gameInfo/gameCells.js";
+import { getPlayerReady, showDieThrow } from "./modals/forms.js";
+import {turnFuncs} from "./turn.js";
 
 const monopoly = document.querySelector(".monopoly");
 
@@ -14,11 +15,21 @@ async function startGame(gameState, cells, table) {
     const player = players[gameState.next];
     const chip = chips[gameState.next];
 
+    let cell = gameCells[player.cell];
+
     await getPlayerReady(player.name);
 
-    const stepsToMove = await getdieThrow();
+    if (cell.name === "Jail") {
+      await turnFuncs.jail(player);
+    }
+
+    const stepsToMove = 3 || await getdieThrow();
 
     await movePlayer(player, stepsToMove, cells, chip);
+
+    cell = gameCells[player.cell];
+
+    await turnFuncs[cell.type](player, cell, players);
 
     gameState.next = (gameState.next + 1) % gameState.players.length;
   }
@@ -59,7 +70,7 @@ async function getdieThrow() {
   const roll1 = random(6) + 1;
   const roll2 = random(6) + 1;
 
-  await showdieThrow(roll1, roll2);
+  await showDieThrow(roll1, roll2);
 
   return roll1 + roll2;
 }
