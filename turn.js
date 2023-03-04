@@ -1,9 +1,13 @@
 export { turnFuncs }
 
-import { showTaxPay, showJailTime, showVisitProperty, showPropertyLot } from "./modals/turnForms.js"
+import { cells } from "./app.js";
+import { cardFuncs } from "./cardAction.js";
+import { transportPlayer } from "./moveChip.js";
+import { communityChest as cc } from "./gameInfo/communityChest.js";
+import { showTaxPay, showJailTime, showVisitProperty, showLot, showCorner, showVisitUtility } from "./modals/turnForms.js"
 
 const turnFuncs = {
-  async corner(player, cell) {
+  async corner({ player, cell, chip }) {
     await showCorner(player, cell);
 
     switch (cell.name) {
@@ -13,8 +17,11 @@ const turnFuncs = {
       case "Jail":
         break;
       case "Free Parking":
+        player.parking = true;
         break;
       case "Go to Jail":
+        transportPlayer(cells[10], chip);
+        player.cell = 10;
         break;
 
       default:
@@ -22,7 +29,7 @@ const turnFuncs = {
     }
   },
 
-  async property(player, cell, players) {
+  async property({ player, cell, players }) {
     const cellOwner = players.find(({ property }) => property.includes(player.cell))
 
     if (cellOwner) {
@@ -30,7 +37,7 @@ const turnFuncs = {
       player.money -= cell.rent[0];
       console.log(player);
     } else {
-      const buys = await showPropertyLot(player, cell);
+      const buys = await showLot(player, cell);
 
       if (buys) {
         player.money -= cell.price;
@@ -40,17 +47,37 @@ const turnFuncs = {
     }
   },
 
-  async communityChest() { },
+  async communityChest({ player, cell, gameState, chip }) {
+    const ccCardIndex = gameState.communityChest.pop();
+    const card = cc[ccCardIndex];
 
-  async tax(player, cell) {
+    await cardFuncs[card.action]({cc, player, cell, chip});
+  },
+
+  async tax({ player, cell }) {
     await showTaxPay(player, cell);
     player.money -= cell.tax_amount;
   },
   async chance() { },
 
-  async utility() { },
+  async utility({ player, cell, players }) {
+    const cellOwner = players.find(({ utility }) => utility.includes(player.cell))
 
-  async jail(player, cell) {
+    if (cellOwner) {
+      await showVisitUtility(player, cellOwner, cell);
+      console.log(player);
+    } else {
+      const buys = await showLot(player, cell);
+
+      if (buys) {
+        player.money -= cell.price;
+        player.utility.push(player.cell);
+        console.log(player);
+      }
+    }
+   },
+
+  async jail({ player, cell }) {
     await showJailTime(player, cell);
     player.money -= cell.fine_amount;
   },

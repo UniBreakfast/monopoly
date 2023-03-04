@@ -19,7 +19,7 @@ export const chance = [
   },
   {
     "text": "Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total of ten times the amount thrown.",
-    "action": "move_to_nearest_utility",
+    "action": "moveToNearestUtility",
     "amount_multiplier": 10
   },
   {
@@ -34,7 +34,7 @@ export const chance = [
   },
   {
     "text": "Get out of jail free. This card may be kept until needed, or traded/sold.",
-    "action": "get_out_of_jail_free",
+    "action": "getOutOfJailFree",
     "type": "jail"
   },
   {
@@ -50,7 +50,7 @@ export const chance = [
   },
   {
     "text": "Make general repairs on all your property. For each house pay $25, for each hotel pay $100.",
-    "action": "debit_per_building",
+    "action": "debitPerBuilding",
     "house_cost": 25,
     "hotel_cost": 100
   },
@@ -72,7 +72,7 @@ export const chance = [
   },
   {
     "text": "You have been elected Chairman of the Board. Pay each player $50.",
-    "action": "debit_from_players",
+    "action": "debitFromPlayers",
     "amount": 50
   },
   {
@@ -97,7 +97,7 @@ export const chance = [
   },
   {
     "text": "Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total of ten times the amount thrown.",
-    "action": "move_to_nearest_utility",
+    "action": "moveToNearestUtility",
     "amount_multiplier": 10
   },
   {
@@ -108,7 +108,7 @@ export const chance = [
   },
   {
     "text": "Advance token to the nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total of ten times the amount thrown.",
-    "action": "move_to_nearest_utility",
+    "action": "moveToNearestUtility",
     "amount_multiplier": 10
   },
   {
@@ -118,7 +118,7 @@ export const chance = [
   },
   {
     "text": "Get out of Jail Free. This card may be kept until needed or sold.",
-    "action": "get_out_of_jail_free",
+    "action": "getOutOfJailFree",
     "type": "jail"
   },
   {

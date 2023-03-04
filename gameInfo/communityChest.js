@@ -22,7 +22,7 @@ export const communityChest = [
   },
   {
     "text": "Get out of jail free. This card may be kept until needed, or traded/sold.",
-    "action": "get_out_of_jail_free",
+    "action": "getOutOfJailFree",
     "type": "jail"
   },
   {
@@ -33,7 +33,7 @@ export const communityChest = [
   },
   {
     "text": "Grand Opera Night. Collect $50 from every player for opening night seats.",
-    "action": "collect_from_players",
+    "action": "collectFromPlayers",
     "amount": 50
   },
   {
@@ -48,11 +48,11 @@ export const communityChest = [
   },
   {
     "text": "It's your birthday. Collect $10 from every player.",
-    "action": "collect_from_players",
+    "action": "collectFromPlayers",
     "amount": 10
   },
   {
-    "text": "Life insurance matures – Collect $100.",
+    "text": "Life insurance matures Collect $100.",
     "action": "credit",
     "amount": 100
   },
@@ -73,7 +73,7 @@ export const communityChest = [
   },
   {
     "text": "You are assessed for street repairs: Pay $40 per house and $115 per hotel you own.",
-    "action": "debit_per_building",
+    "action": "debitPerBuilding",
     "house_cost": 40,
     "hotel_cost": 115
   },
@@ -89,7 +89,7 @@ export const communityChest = [
   },
   {
     "text": "You have been elected Chairman of the Board. Pay each player $50.",
-    "action": "debit_from_players",
+    "action": "debitFromPlayers",
     "amount": 50
   },
   {
@@ -128,7 +128,7 @@ export const communityChest = [
   },
   {
     "text": "Make general repairs on all your property. For each house pay $25, for each hotel pay $100.",
-    "action": "debit_per_building",
+    "action": "debitPerBuilding",
     "house_cost": 25,
     "hotel_cost": 100
   },
@@ -145,7 +145,7 @@ export const communityChest = [
   },
   {
     "text": "Get out of jail free. This card may be kept until needed, or traded/sold.",
-    "action": "get_out_of_jail_free",
+    "action": "getOutOfJailFree",
     "type": "jail"
   },
   {
@@ -170,7 +170,7 @@ export const communityChest = [
   },
   {
     "text": "Advance to the nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total of ten times the amount thrown.",
-    "action": "move_to_nearest_utility",
+    "action": "moveToNearestUtility",
     "amount_multiplier": 10
   },
   {

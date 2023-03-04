@@ -1,5 +1,5 @@
 export { renderBoard }
-import { trackLength } from "./tools/config.js"
+import { trackLength } from "./config.js"
 
 const monopolyWrapper = document.querySelector(".monopoly");
 

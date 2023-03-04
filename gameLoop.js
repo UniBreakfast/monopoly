@@ -2,7 +2,9 @@ export { startGame }
 
 import { gameCells } from "./gameInfo/gameCells.js";
 import { getPlayerReady, showDieThrow } from "./modals/forms.js";
-import {turnFuncs} from "./turn.js";
+import { movePlayer } from "./moveChip.js";
+import { turnFuncs } from "./turn.js";
+import { random } from "./tools/tools.js";
 
 const monopoly = document.querySelector(".monopoly");
 
@@ -15,38 +17,31 @@ async function startGame(gameState, cells, table) {
     const player = players[gameState.next];
     const chip = chips[gameState.next];
 
+    if (player.parking) {
+      player.parking = false;
+      gameState.next = (gameState.next + 1) % gameState.players.length;
+
+      continue;
+    }
+
     let cell = gameCells[player.cell];
 
     await getPlayerReady(player.name);
 
     if (cell.name === "Jail") {
-      await turnFuncs.jail(player);
+      await turnFuncs.jail({player, cell});
     }
 
-    const stepsToMove = 3 || await getdieThrow();
+    const stepsToMove = (player.name == "Bob" ? 20 : 15) || await getdieThrow();
 
     await movePlayer(player, stepsToMove, cells, chip);
+    player.cell = (player.cell + stepsToMove) % gameCells.length;
 
     cell = gameCells[player.cell];
 
-    await turnFuncs[cell.type](player, cell, players);
+    await turnFuncs[cell.type]({ player, cell, players, chip, gameState });
 
     gameState.next = (gameState.next + 1) % gameState.players.length;
-  }
-}
-
-async function movePlayer(player, stepsToMove, cells, chip) {
-  while (stepsToMove--) {
-    await new Promise((resolve) => {
-      const cell = cells[++player.cell];
-      const { width, height, left, top } = cell.getBoundingClientRect();
-
-      chip.style.left = left + (width / 2) - 15 + "px";
-      chip.style.top = top + (height / 2) - 15 + "px";
-
-      chip.addEventListener("transitionend", resolve, { once: true });
-    })
-    await sleep(50);
   }
 }
 
@@ -73,13 +68,5 @@ async function getdieThrow() {
   await showDieThrow(roll1, roll2);
 
   return roll1 + roll2;
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
-
-function random(limit) {
-  return Math.floor(Math.random() * limit);
 }
 

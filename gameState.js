@@ -1,15 +1,22 @@
 export { prepGameState }
 
+import { communityChest } from "./gameInfo/communityChest.js";
+import { chance } from "./gameInfo/chance.js"
+
 const colors = ["yellow", "blue", "red", "green", "orange"];
 
 function prepGameState(...names) {
   const gameState = {
     players: names.map(makePlayer),
     next: 0,
-    turn: 1
+    turn: 1,
+    communityChest: [...communityChest.keys()],
+    chance: [...chance.keys()],
   };
 
   shuffle(gameState.players);
+  shuffle(gameState.communityChest);
+  shuffle(gameState.chance);
 
   return gameState;
 }
@@ -20,7 +27,9 @@ function makePlayer(name) {
     money: 100,
     color: randomColor(),
     property: [],
-    cell: 0
+    utility: [],
+    cell: 0,
+    parking: false
   }
 
   return player;

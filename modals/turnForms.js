@@ -1,4 +1,4 @@
-export { showTaxPay, showJailTime, showPropertyLot, showVisitProperty }
+export { showTaxPay, showJailTime, showLot, showVisitProperty, showCorner, showVisitUtility }
 
 function showTaxPay(player, cell) {
   return new Promise((resolve) => {
@@ -23,7 +23,7 @@ function showTaxPay(player, cell) {
   })
 }
 
-function showJailTime(player) {
+function showJailTime(player, cell) {
   return new Promise((resolve) => {
     const modal = document.createElement("dialog");
     const form = document.createElement("form");
@@ -46,7 +46,7 @@ function showJailTime(player) {
   })
 }
 
-function showPropertyLot(player, cell) {
+function showLot(player, cell) {
   return new Promise((resolve) => {
     const modal = document.createElement("dialog");
     const form = document.createElement("form");
@@ -89,6 +89,52 @@ function showVisitProperty(player, cellOwner, cell) {
 
     btn.append("Ok");
     modal.appendChild(form).innerHTML = `${player.name} visiting ${cell.name} <br> Owner: ${cellOwner.name} <br> Pay rent: $${cell.rent[0]} <br> Funds: $${player.money} ⇒ $${player.money - cell.rent[0]} `;
+    form.append(btn);
+
+    document.body.append(modal);
+
+    modal.showModal();
+  })
+}
+
+function showVisitUtility(player, cellOwner, cell) {
+  return new Promise((resolve) => {
+    const modal = document.createElement("dialog");
+    const form = document.createElement("form");
+    const btn = document.createElement("button");
+
+    form.className = "visit-utility";
+    form.onsubmit = e => {
+      e.preventDefault();
+      resolve()
+      modal.remove();
+    }
+
+    btn.append("Ok");
+    modal.appendChild(form).innerHTML = `${player.name} visiting ${cell.name} <br> Owner: ${cellOwner.name} `;
+    form.append(btn);
+
+    document.body.append(modal);
+
+    modal.showModal();
+  })
+}
+
+function showCorner(player, cell) {
+  return new Promise((resolve) => {
+    const modal = document.createElement("dialog");
+    const form = document.createElement("form");
+    const btn = document.createElement("button");
+
+    form.className = "go-corner";
+    form.onsubmit = e => {
+      e.preventDefault();
+      resolve()
+      modal.remove();
+    }
+
+    btn.append("Ok");
+    modal.appendChild(form).innerHTML = `${cell.action}`;
     form.append(btn);
 
     document.body.append(modal);

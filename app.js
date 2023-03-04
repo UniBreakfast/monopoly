@@ -5,7 +5,7 @@ import { startGame } from "./gameLoop.js";
 import { getPlayerNames } from "./modals/forms.js";
 
 const table = renderBoard();
-const cells = fillBoard(table);
+export const cells = fillBoard(table);
 
 main();
 

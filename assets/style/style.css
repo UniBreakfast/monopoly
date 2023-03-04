@@ -69,12 +69,12 @@ td {
 }
 
 .chest {
-    background: url(./img/chest.jpg) no-repeat;
+    background: url(../img/chest.jpg) no-repeat;
     background-size: contain;
 }
 
 .chance {
-    background: url(./img/chance.png) no-repeat;
+    background: url(../img/chance.png) no-repeat;
     background-size: 100% 100%;
 }
 
