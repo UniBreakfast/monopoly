@@ -7,6 +7,11 @@ body {
     padding: 0;
 }
 
+.monopoly {
+    margin: auto;
+    width: max-content;
+}
+
 table {
     border-collapse: collapse;
 }

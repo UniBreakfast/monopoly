@@ -1,12 +1,14 @@
 export { movePlayer, transportPlayer }
 
 import { sleep } from "./tools/tools.js";
+import { turnFuncs } from "./turn.js";
+import { gameCells } from "./gameInfo/gameCells.js";
 
 async function movePlayer(player, stepsToMove, cells, chip) {
   let playerCell = player.cell;
 
   while (stepsToMove--) {
-    playerCell = (playerCell + 1) % cells.length; 
+    playerCell = (playerCell + 1) % cells.length;
     await new Promise((resolve) => {
       const cell = cells[playerCell];
       const { width, height, left, top } = cell.getBoundingClientRect();
@@ -17,6 +19,10 @@ async function movePlayer(player, stepsToMove, cells, chip) {
       chip.addEventListener("transitionend", resolve, { once: true });
     })
     await sleep(50);
+
+    if (playerCell === 0) {
+      await turnFuncs.corner({ player, cell: gameCells[0] });
+    }
   }
 }
 

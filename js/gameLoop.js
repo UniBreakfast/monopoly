@@ -32,7 +32,7 @@ async function startGame(gameState, cells, table) {
       await turnFuncs.jail({player, cell});
     }
 
-    const stepsToMove = (player.name == "Bob" ? 20 : 15) || await getdieThrow();
+    const stepsToMove = (player.name == "Bob" ? 21 : 15) || await getdieThrow();
 
     await movePlayer(player, stepsToMove, cells, chip);
     player.cell = (player.cell + stepsToMove) % gameCells.length;

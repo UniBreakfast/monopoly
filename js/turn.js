@@ -1,6 +1,6 @@
 export { turnFuncs }
 
-import { cells } from "./app.js";
+import { cells } from "../app.js";
 import { cardFuncs } from "./cardAction.js";
 import { transportPlayer } from "./moveChip.js";
 import { communityChest as cc } from "./gameInfo/communityChest.js";
@@ -51,7 +51,7 @@ const turnFuncs = {
     const ccCardIndex = gameState.communityChest.pop();
     const card = cc[ccCardIndex];
 
-    await cardFuncs[card.action]({cc, player, cell, chip});
+    await cardFuncs[card.action]({cc, player, cell, chip, card});
   },
 
   async tax({ player, cell }) {

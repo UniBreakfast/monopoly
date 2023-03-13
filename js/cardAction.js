@@ -1,11 +1,17 @@
 
 export { cardFuncs }
 
-import { cells } from "./app.js"
+import { cells } from "../app.js"
+import { showChest } from "./modals/chestModal.js"
+import { transportPlayer } from "./moveChip.js"
 
 const cardFuncs = {
-  async move({ cc, player, cell, chip }) {
-  },
+  async move({player, cell, chip, card }) {
+    await showChest(player, card);
+
+    transportPlayer(cells[cell.destination], chip);
+
+   },
   async credit({ cc, player, cell, chip }) { },
   async debit({ cc, player, cell, chip }) { },
   async getOutOfJailFree({ cc, player, cell, chip }) { },
